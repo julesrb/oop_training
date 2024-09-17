@@ -1,25 +1,29 @@
 #pragma once
 
 #include <iostream>
-#include <unordered_set>
 #include "Bank.hpp"
+
+class Bank;
 
 class Account
 {
+	private:
 
-    private:
+		const int _id;
+		Bank& _bank;
+		float _value;
 
-    const int _id;
-	int value;
+		Account(int, Bank &);
+		friend class Bank;
 
-    Account(int);
-    friend class Bank;
+	public:
 
-    public:
+		~Account();
+		const int& getId() const;
+		const float& getValue() const;
 
-    ~Account();
-    void addMoney(int); // give 5% to bank
-
-    void requestLoan(Bank const &, int);
-
+		void addMoney(const int&);
+		void requestLoan(const int&);
 };
+
+std::ostream& operator << (std::ostream& p_os, const Account& p_account);

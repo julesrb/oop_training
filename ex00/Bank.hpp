@@ -4,28 +4,29 @@
 #include <vector>
 #include "Account.hpp"
 
-
+class Account;
 
 class Bank
 {
+	private:
 
-    private:
+		std::vector<Account *> _clients;
+		float _liquidity;
+		int _ids;
 
-    std::vector<Account *> _clients;
-    int _liquidity;
-    int _ids;
+	public:
 
+		Bank();
+		~Bank();
 
-    public:
+		const std::vector<Account *>& getClients() const;
+		const float& getLiquidity() const;
+		void addLiquidity(const int&);
 
-    Bank();
-    ~Bank();
-
-    // int const & getLiquidity();
-    // void setLiquidity(int const &);
-
-    Account const & createAccount();
-    void deleteAccount(Account const &);
-
-
+		Account & createAccount();
+		void deleteAccount(Account &);
+		void bankingFees(Account &);
+		void giveLoan(const int&, Account &);
 };
+
+std::ostream& operator << (std::ostream& p_os, const Bank& p_bank);
