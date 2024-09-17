@@ -4,7 +4,16 @@
 Bank::Bank() : _liquidity(0), _ids(0) {}
 
 
-Bank::~Bank() {}
+Bank::~Bank() 
+{
+	std::vector<Account *>::iterator it;
+	for (it = _clients.begin(); it != _clients.end(); it++)
+	{
+		_clients.erase(it);
+	}
+	_clients.clear();
+
+}
 
 
 Account & Bank::createAccount()
